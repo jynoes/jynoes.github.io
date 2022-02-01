@@ -1,0 +1,219 @@
+/* INDEX */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-left: 20%;
+    margin-right: 20%;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: -20px;
+}
+
+.signup-btn {
+    margin-left: 5px;
+}
+
+.h1top {
+    margin: auto;
+}
+
+.search_bar {
+    margin: auto;
+    margin-top: 10px;
+}
+
+.sheader1 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.sheader2 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.sheader3 {
+    font-size: 20px;
+}
+
+.carousel {
+    text-align: left;
+    margin: auto;
+}
+
+.top-cards {
+    margin: auto;
+}
+
+.carousel-item {
+    justify-content: center;
+}
+
+.first-div {
+    padding-top: 32px;
+}
+
+.second-div {
+    background-color: gainsboro;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.third-div {
+    display: flex;
+    justify-content: center;
+}
+
+.logodiv {
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+}
+
+.card-img {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.header2 {
+    text-align: center;
+}
+
+.carousel-indicators li {
+    background-color: black;
+}
+
+.logo {
+    width: 70%;
+    height: auto;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    padding:  40px 0;
+}
+
+.logodiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 0;
+}
+
+@media (max-width: 1209px) {
+    body {
+        margin: 0;
+        margin-bottom: -20px;
+    }
+    .signup-btn {
+        margin-left: 0;
+    }
+}
+
+.abouttext {
+    padding: 40px 0;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.navigation {
+    background-color: gainsboro;
+}
+
+.bottomline-div {
+    background-color: gainsboro;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+}
+
+.bltext {
+    margin-bottom: 0;
+}
+
+/* LOGIN */
+
+.hero {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.form-box {
+    width: 380px;
+    height: 550px;
+    position: relative;
+    margin: 6% auto;
+    background: gainsboro;
+    padding: 5px;
+    border-radius: 10px;
+}
+.button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.toggle-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container {
+    padding: 16px;
+}
+  
+span.psw {
+    float: right;
+    font-size: 15px;
+}
+
+.login input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+  
+.login-btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+}
+  
+button:hover {
+    opacity: 0.8;
+}
+
+.remember {
+    font-size: 15px;
+}
+  
+.labelsize {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#login {
+    left: 50px;
+}
+
+#signup {
+    left: 450px;
+}
