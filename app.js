@@ -27,6 +27,9 @@ app.get("/signup", function(req, res){
 app.get("/login", function(req, res){
  res.sendFile(__dirname + "/public/login.html");
 })
+app.get("/homepage", function(req, res){
+ res.sendFile(__dirname + "/public/wall.html");
+})
 
 //mysql pool
 const pool = mysql.createPool({
@@ -84,7 +87,7 @@ var LoginPassword = req.body.psw;
 
 
 
-      res.redirect("/");
+      res.redirect("/homepage");
     }
    }
    else{
