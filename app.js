@@ -120,5 +120,5 @@ app.get("/post-system", function(req, res){
     const words = connection.query("SELECT * FROM wordsList", (err, rows) => {
       connection.release();
     })
-  }
+  })
 })
