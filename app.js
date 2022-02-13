@@ -115,7 +115,7 @@ app.post("/write-post", function(req, res){
   })
 })
 app.get("/post-system", function(req, res){
-  pool.getConnection(err, connection) => {
+  pool.getConnection((err, connection) => {
     if (err) throw err
     const words = connection.query("SELECT * FROM wordsList", (err, rows) => {
       connection.release();
