@@ -123,7 +123,7 @@ app.get("/post-system", function(req, res){
     connection.query("SELECT * FROM wordsList", (err, result, fields) => {
       connection.release();
       if(!err){
-        res.render("post-system", {result[0].word:filipinoword, result[0].translation: translation, result[0].meaning: meaning});
+        console.log(result);
       }
       else{
         console.log(err);
