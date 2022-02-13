@@ -95,6 +95,10 @@ var LoginPassword = req.body.psw;
 })
 });
 
+app.get("/write-post", function(req, res){
+  res.render("write-post")
+})
+
 app.post("/write-post", function(req, res){
   const filipinoWord = req.body.filipinoWord;
   const transWord = req.body.Transword;
@@ -119,7 +123,7 @@ app.get("/post-system", function(req, res){
     connection.query("SELECT * FROM wordsList", (err, result, fields) => {
       connection.release();
       if(!err){
-        res.send(result);
+        res.render("post-system", {result[0].word:filipinoword, result[0].translation: translation, result[0].meaning: meaning});
       }
       else{
         console.log(err);
