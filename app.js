@@ -13,6 +13,8 @@ const port = process.env.port || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+let words = [];
+
 app.get("/", function(req, res){
  res.sendFile(__dirname + "/public/index.html");
 })
@@ -35,7 +37,6 @@ const pool = mysql.createPool({
  password:"",
  database:"oofilipinodb",
  connectionLimit: 10
-
 })
 
 app.post("/signup", function(req, res){
@@ -93,3 +94,31 @@ var LoginPassword = req.body.psw;
   })
 })
 });
+
+app.post("/write-post", function(req, res){
+  const filipinoWord = req.body.filipinoWord;
+  const transWord = req.body.Transword;
+  const wordMean = req.body.meaning;
+  console.log(filipinoWord, transWord, wordMean)
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query("INSERT INTO wordsList (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
+      connection.release()
+      if (!err){
+        res.redirect("/");
+        console.log(connection);
+      }
+      else{
+        console.log(err);
+      }
+    })
+  })
+})
+app.get("/post-system", function(req, res){
+  pool.getConnection(err, connection) => {
+    if (err) throw err
+    const words = connection.query("SELECT * FROM wordsList", (err, rows) => {
+      connection.release();
+    })
+  }
+})
