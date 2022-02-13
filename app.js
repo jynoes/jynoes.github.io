@@ -105,8 +105,7 @@ app.post("/write-post", function(req, res){
     connection.query("INSERT INTO wordsList (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
       connection.release()
       if (!err){
-        res.redirect("/");
-        console.log(connection);
+        res.redirect("/post-system");
       }
       else{
         console.log(err);
@@ -117,8 +116,14 @@ app.post("/write-post", function(req, res){
 app.get("/post-system", function(req, res){
   pool.getConnection((err, connection) => {
     if (err) throw err
-    const words = connection.query("SELECT * FROM wordsList", (err, rows) => {
+    connection.query("SELECT * FROM wordsList", (err, result, fields) => {
       connection.release();
+      if(!err){
+        res.send(result);
+      }
+      else{
+        console.log(err);
+      }
     })
   })
 })
