@@ -5,8 +5,10 @@
     <title></title>
   </head>
   <body>
-    <h3> <%= filipinoword %> </h3>
-    <h5> <%= translation %> </h5>
-    <p> <%= meaning %> </p>
+    <%= results.forEach(function(result) { %>
+      <h3><%= result.Fword %></h3>
+      <h1><%= result.Tword %></h1>
+      <p><%= result.meaning %></p>
+    <% }); %>
   </body>
 </html>
