@@ -125,9 +125,6 @@ app.get("/post-system", function(req, res){
     connection.query("SELECT * FROM wordslist", (err, results, fields) => {
       connection.release();
       if(!err){
-<<<<<<< HEAD
-        res.render("post-system", { results: results });
-        console.log(results);
 =======
         res.render("post-system", { result: results });
         console.log(result);
