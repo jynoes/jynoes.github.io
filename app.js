@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+const ejs = require('ejs');
 
 const app = express();
 
@@ -106,7 +107,7 @@ app.post("/write-post", function(req, res){
   console.log(filipinoWord, transWord, wordMean)
   pool.getConnection((err, connection) => {
     if (err) throw err
-    connection.query("INSERT INTO wordsList (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
+    connection.query("INSERT INTO wordslist (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
       connection.release()
       if (!err){
         res.redirect("/post-system");
@@ -118,13 +119,19 @@ app.post("/write-post", function(req, res){
   })
 })
 app.get("/post-system", function(req, res){
+  var results;
   pool.getConnection((err, connection) => {
     if (err) throw err
-    connection.query("SELECT * FROM wordsList", (err, result, fields) => {
+    connection.query("SELECT * FROM wordslist", (err, results, fields) => {
       connection.release();
       if(!err){
-        res.render("post-system", { result: results })
+<<<<<<< HEAD
+        res.render("post-system", { results: results });
+        console.log(results);
+=======
+        res.render("post-system", { result: results });
         console.log(result);
+>>>>>>> 1c804d563f57bc69a59dc68d7cd03419a3969559
       }
       else{
         console.log(err);
