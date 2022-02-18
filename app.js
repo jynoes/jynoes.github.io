@@ -119,20 +119,13 @@ app.post("/write-post", function(req, res){
   })
 })
 app.get("/post-system", function(req, res){
-  var results;
   pool.getConnection((err, connection) => {
     if (err) throw err
     connection.query("SELECT * FROM wordslist", (err, results, fields) => {
       connection.release();
-      if(!err){
-=======
+      if(err) throw err
         res.render("post-system", { results: results });
         console.log(result);
->>>>>>> 1c804d563f57bc69a59dc68d7cd03419a3969559
-      }
-      else{
-        console.log(err);
-      }
     })
   })
 })
