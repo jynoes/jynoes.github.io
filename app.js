@@ -125,7 +125,7 @@ app.get("/post-system", function(req, res){
       connection.release();
       if(err) throw err
         res.render("post-system", { results: results });
-        console.log(result);
+        console.log(results);
     })
   })
 })
