@@ -126,7 +126,7 @@ app.get("/post-system", function(req, res){
       connection.release();
       if(!err){
 =======
-        res.render("post-system", { result: results });
+        res.render("post-system", { results: results });
         console.log(result);
 >>>>>>> 1c804d563f57bc69a59dc68d7cd03419a3969559
       }
