@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% results.forEach(function(post){ %>
+      <div style="border: 1px;">
+      <h1 style="margin: 2% auto auto 20%"><%= post.Fword %></h1>
+      <p style="margin: auto auto auto 22%"><%= post.Tword %></p>
+      <p style="margin: auto auto auto 22%"><%= post.meaning %></p>
+      <hr>
+      </div>
+    <% }); %>
+  </body>
+</html>
