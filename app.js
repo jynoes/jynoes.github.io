@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+const ejs = require('ejs');
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(express.static("public"));
 const port = process.env.port || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
+
+let words = [];
 
 app.get("/", function(req, res){
  res.sendFile(__dirname + "/public/index.html");
@@ -38,7 +41,6 @@ const pool = mysql.createPool({
  password:"",
  database:"oofilipinodb",
  connectionLimit: 10
-
 })
 
 app.post("/signup", function(req, res){
@@ -97,3 +99,37 @@ var LoginPassword = req.body.psw;
   })
 })
 });
+
+app.get("/write-post", function(req, res){
+  res.render("write-post")
+})
+
+app.post("/write-post", function(req, res){
+  const filipinoWord = req.body.filipinoWord;
+  const transWord = req.body.Transword;
+  const wordMean = req.body.meaning;
+  console.log(filipinoWord, transWord, wordMean)
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query("INSERT INTO wordslist (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
+      connection.release()
+      if (!err){
+        res.redirect("/post-system");
+      }
+      else{
+        console.log(err);
+      }
+    })
+  })
+})
+app.get("/post-system", function(req, res){
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query("SELECT * FROM wordslist", (err, results, fields) => {
+      connection.release();
+      if(err) throw err
+        res.render("post-system", { results: results });
+        console.log(results);
+    })
+  })
+})
