@@ -123,7 +123,7 @@ app.post("/write-post", function(req, res){
     connection.query("INSERT INTO wordslist (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
       connection.release()
       if (!err){
-        res.redirect("/post-system");
+        res.redirect("/homepage");
       }
       else{
         console.log(err);
