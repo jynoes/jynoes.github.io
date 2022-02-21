@@ -14,10 +14,11 @@ const port = process.env.port || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-let words = [];
+let activeUser = [];
+
 
 app.get("/", function(req, res){
- res.sendFile(__dirname + "/public/index.html");
+ res.render("index");
 })
 
 app.listen(3000, function(){
@@ -25,13 +26,23 @@ app.listen(3000, function(){
 })
 
 app.get("/signup", function(req, res){
- res.sendFile(__dirname + "/public/signup.html");
+ res.render("signup");
 })
 app.get("/login", function(req, res){
- res.sendFile(__dirname + "/public/login.html");
+ res.render("login");
 })
 app.get("/homepage", function(req, res){
- res.sendFile(__dirname + "/public/wall.html");
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query("SELECT * FROM wordslist", (err, results, fields) => {
+      connection.release();
+      if(err) throw err
+        res.render("wall", {
+          results: results,
+          activeUser : activeUser
+         });
+    })
+  })
 })
 
 //mysql pool
@@ -86,8 +97,7 @@ var LoginPassword = req.body.psw;
 
    if(!err){
     if(LoginPassword == rows[0].password){
-
-
+      activeUser.push(LoginUsername);
 
       res.redirect("/homepage");
     }
@@ -128,7 +138,6 @@ app.get("/post-system", function(req, res){
       connection.release();
       if(err) throw err
         res.render("post-system", { results: results });
-        console.log(results);
     })
   })
 })
