@@ -11,6 +11,7 @@ body {
     margin-bottom: -20px;
 }
 
+
 .signup-btn {
     margin-left: 5px;
 }
@@ -21,7 +22,6 @@ body {
 
 .search_bar {
     margin: auto;
-    margin-top: 10px;
 }
 
 .sheader1 {
@@ -231,9 +231,6 @@ button:hover {
 
 
 
-.colpost {
-    overflow-y: scroll;
-}
 
 .form-center {
     justify-content: center;
