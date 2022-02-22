@@ -229,9 +229,12 @@ button:hover {
     opacity: 0.5;
 }
 
-.colsearch {
-}
+
 
 .colpost {
     overflow-y: scroll;
+}
+
+.form-center {
+    justify-content: center;
 }
