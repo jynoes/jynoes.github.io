@@ -85,7 +85,7 @@ app.post("/signup", function(req, res){
 
    //add an alert box to inform user that does password is error
   console.log("password does not match");
-  res.sendFile(__dirname + "/public/signUp.html");
+  res.redirect("/signup")
  }
 
 })
