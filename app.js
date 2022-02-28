@@ -29,7 +29,12 @@ app.get("/signup", function(req, res){
  res.render("signup");
 })
 app.get("/login", function(req, res){
- res.render("login");
+  if (activeUser[0] != null){
+    res.redirect("/homepage");
+  }
+  else{
+    res.render("login");
+  };
 })
 app.get("/homepage", function(req, res){
   pool.getConnection((err, connection) => {
@@ -108,6 +113,11 @@ var LoginPassword = req.body.psw;
   })
 })
 });
+
+app.post("/signout", function(req, res){
+  activeUser.pop();
+  res.redirect("/login");
+})
 
 app.get("/write-post", function(req, res){
   res.render("write-post")
