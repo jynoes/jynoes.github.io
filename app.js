@@ -14,10 +14,11 @@ const port = process.env.port || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-let words = [];
+let activeUser = [];
+
 
 app.get("/", function(req, res){
- res.sendFile(__dirname + "/public/index.html");
+ res.render("index");
 })
 
 app.listen(3000, function(){
@@ -25,13 +26,28 @@ app.listen(3000, function(){
 })
 
 app.get("/signup", function(req, res){
- res.sendFile(__dirname + "/public/signup.html");
+ res.render("signup");
 })
 app.get("/login", function(req, res){
- res.sendFile(__dirname + "/public/login.html");
+  if (activeUser[0] != null){
+    res.redirect("/homepage");
+  }
+  else{
+    res.render("login");
+  };
 })
 app.get("/homepage", function(req, res){
- res.sendFile(__dirname + "/public/wall.html");
+  pool.getConnection((err, connection) => {
+    if (err) throw err
+    connection.query("SELECT * FROM wordslist", (err, results, fields) => {
+      connection.release();
+      if(err) throw err
+        res.render("wall", {
+          results: results,
+          activeUser : activeUser
+         });
+    })
+  })
 })
 
 //mysql pool
@@ -69,7 +85,7 @@ app.post("/signup", function(req, res){
 
    //add an alert box to inform user that does password is error
   console.log("password does not match");
-  res.sendFile(__dirname + "/public/signUp.html");
+  res.redirect("/signup")
  }
 
 })
@@ -86,8 +102,7 @@ var LoginPassword = req.body.psw;
 
    if(!err){
     if(LoginPassword == rows[0].password){
-
-
+      activeUser.push(LoginUsername);
 
       res.redirect("/homepage");
     }
@@ -99,6 +114,11 @@ var LoginPassword = req.body.psw;
   })
 })
 });
+
+app.post("/signout", function(req, res){
+  activeUser.pop();
+  res.redirect("/login");
+})
 
 app.get("/write-post", function(req, res){
   res.render("write-post")
@@ -114,7 +134,7 @@ app.post("/write-post", function(req, res){
     connection.query("INSERT INTO wordslist (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
       connection.release()
       if (!err){
-        res.redirect("/post-system");
+        res.redirect("/homepage");
       }
       else{
         console.log(err);
@@ -129,7 +149,6 @@ app.get("/post-system", function(req, res){
       connection.release();
       if(err) throw err
         res.render("post-system", { results: results });
-        console.log(results);
     })
   })
 })

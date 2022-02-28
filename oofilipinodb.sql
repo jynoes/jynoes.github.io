@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2022 at 05:06 AM
+-- Generation Time: Feb 21, 2022 at 02:13 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -38,7 +38,35 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `username`) VALUES
-(1, 'parcs', 'john jian');
+(1, 'parcs', 'john jian'),
+(2, 'lowell', 'lowell');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wordslist`
+--
+
+CREATE TABLE `wordslist` (
+  `Fword` varchar(255) NOT NULL,
+  `Tword` varchar(255) NOT NULL,
+  `meaning` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wordslist`
+--
+
+INSERT INTO `wordslist` (`Fword`, `Tword`, `meaning`) VALUES
+('tite', 'tite', 'tite'),
+('tite', 'tite', 'tite'),
+('tite', 'tite', 'tite'),
+('tite', 'tite', 'tite'),
+('tite', 'tite', 'tite'),
+('tite', 'tite', 'tite'),
+('a', 'a', 'a'),
+('a', 'a', 'a'),
+('tite', 'tite', 'tite');
 
 --
 -- Indexes for dumped tables
@@ -58,7 +86,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
