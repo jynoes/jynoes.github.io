@@ -40,12 +40,16 @@ app.get("/homepage", function(req, res){
   pool.getConnection((err, connection) => {
     if (err) throw err
     connection.query("SELECT * FROM wordslist", (err, results, fields) => {
-      connection.release();
       if(err) throw err
+      connection.query("SELECT * FROM dictionary", (err, dict, fields) => {
+        if(err) throw err
+
         res.render("wall", {
           results: results,
-          activeUser : activeUser
-         });
+          activeUser : activeUser,
+          dict : dict
+        })
+      });
     })
   })
 })
@@ -131,7 +135,7 @@ app.post("/write-post", function(req, res){
   console.log(filipinoWord, transWord, wordMean)
   pool.getConnection((err, connection) => {
     if (err) throw err
-    connection.query("INSERT INTO wordslist (Fword, Tword, meaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
+    connection.query("INSERT INTO wordslist (Fword, Tword, postMeaning) VALUES ('" + filipinoWord + "', '" + transWord + "', '"+ wordMean +"')",(err, rows) => {
       connection.release()
       if (!err){
         res.redirect("/homepage");

@@ -48,13 +48,13 @@
                     <input type="text" placeholder="Search..">
                 </div>
                 <hr>
-                <% for (var i = 0; i <= 5; i++){ %>
+                <% for (var i = 0; i <= dict.length - 1; i++){ %>
                 <div class="">
                     <div class="card mb-2">
 
                         <div class="card-body">
-                        <h4 class="card-title"><%= results[i]['Fword'] %></h4>
-                        <p class="card-text"><%= results[i]['meaning'] %></p>
+                        <h4 class="card-title"><%= dict[i]['Filipinoword_translation'] %></h4>
+                        <p class="card-text"><%= dict[i]['meaning'] %></p>
 
                         </div>
 
@@ -64,19 +64,22 @@
             </div>
 
             <div class="col-sm-8 colpost">
-              <% for (var j = 5; j <= results.length - 1; j++){ %>
+              <% if (results.length == 0) { %>
+                <h1 style="text-align: center">No Post Yet...</h1>
+              <% } else{ %>
+              <% for (var j = 0; j <= results.length - 1; j++){ %>
               <div class="">
                   <div class="card mb-2">
 
                       <div class="card-body">
                       <h4 class="card-title"><%= results[j]['Fword'] %></h4>
-                      <p class="card-text"><%= results[j]['meaning'] %></p>
+                      <p class="card-text"><%= results[j]['postMeaning'] %></p>
 
                       </div>
 
                   </div>
               </div>
-              <% } %>
+              <% }} %>
             </div>
             </div>
         </div>
