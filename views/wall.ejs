@@ -48,22 +48,21 @@
 
             <div class="col-sm-4 colsearch">
                 <div class="search_bar text-center">
-                    <input type="text" placeholder="Search..">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..">
                 </div>
                 <hr>
+                <ul id="myUL">
                 <% for (var i = 0; i <= dict.length - 1; i++){ %>
-                <div class="">
+                <li>
                     <div class="card mb-2">
-
                         <div class="card-body">
                         <h4 class="card-title"><%= dict[i]['Filipinoword_translation'] %></h4>
                         <p class="card-text"><%= dict[i]['meaning'] %></p>
-
                         </div>
-
                     </div>
-                </div>
+                </li>
                 <% } %>
+                </ul>
             </div>
             <div class="col-sm-8 colpost">
             <div class="card mb-2">
@@ -98,7 +97,24 @@
             </div>
         </div>
     </div>
-
+    <script>
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("h4")[0];
+            txtValue = a.innerHTML;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>
 
 
 </body>

@@ -44,7 +44,7 @@ app.get("/homepage", function(req, res){
       if (err) throw err
       connection.query("SELECT * FROM wordslist", (err, results, fields) => {
         if(err) throw err
-        connection.query("SELECT * FROM dictionary", (err, dict, fields) => {
+        connection.query("SELECT * FROM dictionary ORDER BY Filipinoword_translation ASC", (err, dict, fields) => {
           if(err) throw err
 
           res.render("wall", {
