@@ -37,21 +37,27 @@ app.get("/login", function(req, res){
   };
 })
 app.get("/homepage", function(req, res){
-  pool.getConnection((err, connection) => {
-    if (err) throw err
-    connection.query("SELECT * FROM wordslist", (err, results, fields) => {
-      if(err) throw err
-      connection.query("SELECT * FROM dictionary", (err, dict, fields) => {
+  if (activeUser[0] != null){
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+      connection.query("SELECT * FROM wordslist", (err, results, fields) => {
         if(err) throw err
+        connection.query("SELECT * FROM dictionary", (err, dict, fields) => {
+          if(err) throw err
 
-        res.render("wall", {
-          results: results,
-          activeUser : activeUser,
-          dict : dict
-        })
-      });
+          res.render("wall", {
+            results: results,
+            activeUser : activeUser,
+            dict : dict
+          })
+        });
+      })
     })
-  })
+  }
+  else{
+    res.redirect("/login");
+  };
+
 })
 
 //mysql pool

@@ -33,8 +33,11 @@
                 </li>
             </ul>
             <div class="navbar-nav ml-auto">
-                <button type="button" class="btn btn-info"><%= activeUser[0] %></button>
-                <img src="../Images/settings.png" class="gearicon">
+                <form action="/signout" method="post">
+                  <label for="">Hi! <%= activeUser[0] %></label>
+                  <button type="submit" class="btn btn-info">Sign out</button>
+                  <img src="../Images/settings.png" class="gearicon">
+                </form>
             </div>
         </div>
 
