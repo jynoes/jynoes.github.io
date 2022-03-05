@@ -65,8 +65,19 @@
                 </div>
                 <% } %>
             </div>
-
             <div class="col-sm-8 colpost">
+            <div class="card mb-2">
+              <form action="/write-post" method="post">
+
+                <input type="text" name="filipinoWord" placeholder="word">
+
+                <input type="text" name="Transword" placeholder="translation">
+
+                <input type="text" name="meaning" placeholder="meaning">
+                <button type="submit" name="button">Submit</button>
+              </form>
+            </div>
+
               <% if (results.length == 0) { %>
                 <h1 style="text-align: center">No Post Yet...</h1>
               <% } else{ %>

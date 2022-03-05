@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 let activeUser = [];
 
-
+//rendering page
 app.get("/", function(req, res){
  res.render("index");
 })
@@ -29,6 +29,7 @@ app.get("/signup", function(req, res){
  res.render("signup");
 })
 app.get("/login", function(req, res){
+  //verify if there is an active user
   if (activeUser[0] != null){
     res.redirect("/homepage");
   }
@@ -37,6 +38,7 @@ app.get("/login", function(req, res){
   };
 })
 app.get("/homepage", function(req, res){
+  //homepage if else is to verify if there is a user
   if (activeUser[0] != null){
     pool.getConnection((err, connection) => {
       if (err) throw err
@@ -99,7 +101,7 @@ app.post("/signup", function(req, res){
  }
 
 })
-
+//login page
 app.post("/login", function(req, res){
 var LoginUsername = req.body.uname;
 var LoginPassword = req.body.psw;
